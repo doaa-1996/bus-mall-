@@ -1,0 +1,95 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+header img{
+    float:left;
+    margin-right: 900px;
+    margin-top: -20px;
+}
+
+header nav{
+ margin-top: 30px;
+}
+
+
+
+header nav a{
+margin-right: 30px;
+font-size: x-large;
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+color: lightseagreen;
+}
+
+
+
+
+
+
+
+#imageSection{
+    margin-top: 100px;
+    height: 500px;
+
+}
+
+
+
+
+
+
+
+
+#leftImage{
+    float:left;
+    width:31%;
+    margin-right: 3%;
+}
+
+
+#middleImage{
+    float:left;
+    width:31%;
+    margin-right: 3%;
+
+}
+
+#rightImage{
+    width:31%;
+
+}
+
+
+#button{
+    border-radius: 5px;
+    background-color: lightseagreen;
+}
+
+ #footer{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: grey;
+}
+
+
+
+#results ul li{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: x-large;
+    color:purple;
+}
