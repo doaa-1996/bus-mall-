@@ -35,8 +35,21 @@ for( let i = 0; i < busMallArray.length; i++ ) {
 }
 
 
+
+
+
+let left = 27;
+let middle = 27;
+let right = 27;
+
 function render() {
+
   let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+  while( leftIndex === left || leftIndex === middle || leftIndex === right ){
+    leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
+  }
+
   leftImage.src = Bussmall.all[leftIndex].image;
   leftImage.alt = Bussmall.all[leftIndex].name;
   leftImgIndex = leftIndex;
@@ -44,22 +57,33 @@ function render() {
   let middleIndex;
   let rightIndex;
 
-  do {
-    rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-  } while( leftIndex === rightIndex );
+
+  rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+  while( leftIndex === rightIndex || rightIndex === left || rightIndex === middle || rightIndex === right );
+  { rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+  }
 
   rightImage.src = Bussmall.all[rightIndex].image;
   rightImage.alt = Bussmall.all[rightIndex].name;
   rightImgIndex = rightIndex;
 
 
-  do{
+
+  middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+  while ( middleIndex === leftIndex || middleIndex === rightIndex || middleIndex === left || middleIndex === middle || middleIndex === right );{
     middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-  } while ( middleIndex === leftIndex || middleIndex === rightIndex );
+
+  }
 
   middleImage.src = Bussmall.all[middleIndex].image;
   middleImage.alt = Bussmall.all[middleIndex].name;
   middleImgIndex = middleIndex;
+  middle = middleIndex;
+
+
+
 
 
 
@@ -67,7 +91,50 @@ function render() {
   Bussmall.all[middleIndex].shown++;
   Bussmall.all[rightIndex].shown++;
 
+  left = leftIndex;
+  right = rightIndex;
+
 }
+
+
+
+
+
+
+// function render() {
+//   let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
+//   leftImage.src = Bussmall.all[leftIndex].image;
+//   leftImage.alt = Bussmall.all[leftIndex].name;
+
+//   let middleIndex;
+//   let rightIndex;
+
+//   do {
+//     rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+//   } while( leftIndex === rightIndex );
+
+//   rightImage.src = Bussmall.all[rightIndex].image;
+//   rightImage.alt = Bussmall.all[rightIndex].name;
+
+
+//   do{
+//     middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
+//   } while ( middleIndex === leftIndex || middleIndex === rightIndex );
+
+//   middleImage.src = Bussmall.all[middleIndex].image;
+//   middleImage.alt = Bussmall.all[middleIndex].name;
+
+
+//   Bussmall.all[leftIndex].shown++;
+//   Bussmall.all[middleIndex].shown++;
+//   Bussmall.all[rightIndex].shown++;
+
+
+//   leftImgIndex = leftIndex;
+//   rightImgIndex = rightIndex;
+//   middleImgIndex = middleIndex;
+
+// }
 
 
 
@@ -97,6 +164,9 @@ function handelClick( event ) {
       console.log( Bussmall.all );
     }
   }
+  // else {
+  //   renderChart();
+  // }
 }
 
 
@@ -128,6 +198,146 @@ Button.addEventListener ( 'click', function (){
   }
 }
 );
+
+
+
+
+
+
+
+
+const chartButton = document.getElementById( 'chartbutton' );
+chartButton.addEventListener ( 'click', function (){
+  let nameArray = [];
+  let clicksArray = [];
+  let showsArray = [];
+
+  for ( let i = 0; i < Bussmall.all.length; i++ ) {
+    nameArray.push ( Bussmall.all[i].name );
+    clicksArray.push ( Bussmall.all[i].clicks );
+    showsArray.push( Bussmall.all[i].shown );
+  }
+
+  let ctx = document.getElementById( 'myChart' ).getContext( '2d' );
+  new Chart ( ctx, {
+    type: 'bar',
+    data: {
+      labels: nameArray,
+      datasets: [{
+        label: 'Votes',
+        data: clicksArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+          ,
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+          ,
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderWidth: 1
+      },{
+        label: 'Shows',
+        data: showsArray,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+          ,
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+          ,
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderWidth: 1}
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  } );
+} );
+
+
+
+
+
 
 
 
