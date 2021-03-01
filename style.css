@@ -1,21 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 header img{
     float:left;
     margin-right: 900px;
@@ -38,19 +21,11 @@ color: lightseagreen;
 
 
 
-
-
-
 #imageSection{
     margin-top: 100px;
     height: 500px;
-
+    margin-bottom: 20px;
 }
-
-
-
-
-
 
 
 
@@ -58,6 +33,7 @@ color: lightseagreen;
     float:left;
     width:31%;
     margin-right: 3%;
+    height: 400px;
 }
 
 
@@ -65,11 +41,13 @@ color: lightseagreen;
     float:left;
     width:31%;
     margin-right: 3%;
+    height: 400px;
 
 }
 
 #rightImage{
     width:31%;
+    height: 400px;
 
 }
 
@@ -77,6 +55,15 @@ color: lightseagreen;
 #button{
     border-radius: 5px;
     background-color: lightseagreen;
+    float: left;
+    margin-top: -30px;
+
+}
+
+#chartbutton{
+    border-radius: 5px;
+    background-color: lightseagreen;
+    float:left;
 }
 
  #footer{
