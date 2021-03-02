@@ -23,6 +23,7 @@ function Bussmall( name ) {
   this.clicks = 0;
   this.shown = 0;
   Bussmall.all.push( this );
+
 }
 
 Bussmall.all = [];
@@ -64,6 +65,11 @@ function render() {
   arr[1] = middleIndex;
 }
 
+
+
+
+
+
 //handle click function and counting the number of clicks
 function handelClick( event ) {
   if( Bussmall.counter < clickCounter ) {
@@ -80,16 +86,11 @@ function handelClick( event ) {
       }
       Bussmall.counter++;
       render();
-      // console.log( Bussmall.all );
     }
   }
-  // else {
-  //   renderChart();
-  // }
 }
 
 imageSection.addEventListener( 'click', handelClick );
-
 
 
 //Random number generating function
@@ -115,13 +116,20 @@ Button.addEventListener ( 'click', function (){
 );
 
 // Drawing the chart
+
+
 const chartButton = document.getElementById( 'chartbutton' );
 chartButton.addEventListener ( 'click',renderChart ) ;
+
+
+
 
 function renderChart (){
   let nameArray = [];
   let clicksArray = [];
   let showsArray = [];
+  localStorage.setItem( 'Bussmall', JSON.stringify( Bussmall.all ) );
+
   for ( let i = 0; i < Bussmall.all.length; i++ ) {
     nameArray.push ( Bussmall.all[i].name );
     clicksArray.push ( Bussmall.all[i].clicks );
@@ -241,3 +249,17 @@ function renderChart (){
     }
   } );
 }
+
+//Local storage function
+
+function getData() {
+  const data = localStorage.getItem( 'Bussmall' );
+  if( data ) {
+    const objData = JSON.parse( data );
+    Bussmall.all = objData;
+    renderChart();
+  }
+}
+
+chartButton.addEventListener( 'submit', Bussmall );
+getData();
