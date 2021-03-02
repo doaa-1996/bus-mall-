@@ -38,103 +38,102 @@ for( let i = 0; i < busMallArray.length; i++ ) {
 
 
 
-let left = 27;
-let middle = 27;
-let right = 27;
-
-function render() {
-
-  let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
-
-  while( leftIndex === left || leftIndex === middle || leftIndex === right ){
-    leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
-  }
-
-  leftImage.src = Bussmall.all[leftIndex].image;
-  leftImage.alt = Bussmall.all[leftIndex].name;
-  leftImgIndex = leftIndex;
-
-  let middleIndex;
-  let rightIndex;
-
-
-  rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-
-  while( leftIndex === rightIndex || rightIndex === left || rightIndex === middle || rightIndex === right );
-  { rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-  }
-
-  rightImage.src = Bussmall.all[rightIndex].image;
-  rightImage.alt = Bussmall.all[rightIndex].name;
-  rightImgIndex = rightIndex;
-
-
-
-  middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-
-  while ( middleIndex === leftIndex || middleIndex === rightIndex || middleIndex === left || middleIndex === middle || middleIndex === right );{
-    middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-
-  }
-
-  middleImage.src = Bussmall.all[middleIndex].image;
-  middleImage.alt = Bussmall.all[middleIndex].name;
-  middleImgIndex = middleIndex;
-  middle = middleIndex;
-
-
-
-
-
-
-  Bussmall.all[leftIndex].shown++;
-  Bussmall.all[middleIndex].shown++;
-  Bussmall.all[rightIndex].shown++;
-
-  left = leftIndex;
-  right = rightIndex;
-
-}
-
-
-
-
-
+// let left = 100;
+// let middle = 100;
+// let right = 100;
 
 // function render() {
+
 //   let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+//   while( leftIndex === left || leftIndex === middle || leftIndex === right ){
+//     leftIndex = randomNumber ( 0, Bussmall.all.length - 1 );
+//   }
+
 //   leftImage.src = Bussmall.all[leftIndex].image;
 //   leftImage.alt = Bussmall.all[leftIndex].name;
+//   leftImgIndex = leftIndex;
 
 //   let middleIndex;
 //   let rightIndex;
 
-//   do {
-//     rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   } while( leftIndex === rightIndex );
+
+//   rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+//   while ( rightIndex === leftIndex || rightIndex === left || rightIndex === middle || rightIndex === right );
+//   { rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+//   }
 
 //   rightImage.src = Bussmall.all[rightIndex].image;
 //   rightImage.alt = Bussmall.all[rightIndex].name;
+//   rightImgIndex = rightIndex;
 
 
-//   do{
+
+//   middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
+
+//   while ( middleIndex === leftIndex || middleIndex === rightIndex || middleIndex === left || middleIndex === middle || middleIndex === right );{
 //     middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   } while ( middleIndex === leftIndex || middleIndex === rightIndex );
+
+//   }
 
 //   middleImage.src = Bussmall.all[middleIndex].image;
 //   middleImage.alt = Bussmall.all[middleIndex].name;
+//   middleImgIndex = middleIndex;
+
+
+
+
 
 
 //   Bussmall.all[leftIndex].shown++;
 //   Bussmall.all[middleIndex].shown++;
 //   Bussmall.all[rightIndex].shown++;
 
-
-//   leftImgIndex = leftIndex;
-//   rightImgIndex = rightIndex;
-//   middleImgIndex = middleIndex;
+//   left = leftIndex;
+//   middle = middleIndex;
+//   right = rightIndex;
 
 // }
+
+
+
+
+
+function render() {
+  let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
+  leftImage.src = Bussmall.all[leftIndex].image;
+  leftImage.alt = Bussmall.all[leftIndex].name;
+
+  let middleIndex;
+  let rightIndex;
+
+  do {
+    rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
+  } while( leftIndex === rightIndex );
+
+  rightImage.src = Bussmall.all[rightIndex].image;
+  rightImage.alt = Bussmall.all[rightIndex].name;
+
+
+  do{
+    middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
+  } while ( middleIndex === leftIndex || middleIndex === rightIndex );
+
+  middleImage.src = Bussmall.all[middleIndex].image;
+  middleImage.alt = Bussmall.all[middleIndex].name;
+
+
+  Bussmall.all[leftIndex].shown++;
+  Bussmall.all[middleIndex].shown++;
+  Bussmall.all[rightIndex].shown++;
+
+
+  leftImgIndex = leftIndex;
+  rightImgIndex = rightIndex;
+  middleImgIndex = middleIndex;
+
+}
 
 
 
@@ -161,8 +160,9 @@ function handelClick( event ) {
       Bussmall.counter++;
       render();
 
-      console.log( Bussmall.all );
+      // console.log( Bussmall.all );
     }
+
   }
   // else {
   //   renderChart();
@@ -207,7 +207,9 @@ Button.addEventListener ( 'click', function (){
 
 
 const chartButton = document.getElementById( 'chartbutton' );
-chartButton.addEventListener ( 'click', function (){
+chartButton.addEventListener ( 'click',renderChart ) ;
+
+function renderChart (){
   let nameArray = [];
   let clicksArray = [];
   let showsArray = [];
@@ -332,7 +334,7 @@ chartButton.addEventListener ( 'click', function (){
       }
     }
   } );
-} );
+}
 
 
 
