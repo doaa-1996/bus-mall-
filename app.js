@@ -1,15 +1,22 @@
 'use strict';
+
+//Array of all images names
 let busMallArray = ['bag','banana','bathroom','boots','breakfast',
   'bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep',
   'scissors','shark','sweep','tauntaun','unicorn','water-can','wine-glass'];
+
+
 const imageSection = document.getElementById ( 'imageSection' );
 const leftImage = document.getElementById( 'leftImage' );
 const middleImage = document.getElementById( 'middleImage' );
 const rightImage = document.getElementById( 'rightImage' );
+
 let leftImgIndex = 0;
 let middleImgIndex = 0;
 let rightImgIndex = 0;
 const clickCounter = 25;
+
+//Constructor
 function Bussmall( name ) {
   this.name = name;
   this.image = `./img/${name}.jpg`;
@@ -17,45 +24,16 @@ function Bussmall( name ) {
   this.shown = 0;
   Bussmall.all.push( this );
 }
+
 Bussmall.all = [];
 Bussmall.counter = 0;
+
 for( let i = 0; i < busMallArray.length; i++ ) {
   new Bussmall( busMallArray[i] );
 }
-// let left = 100;
-// let middle = 100;
-// let right = 100;
-// function render() {
-//   let leftIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   while( leftIndex === left || leftIndex === middle || leftIndex === right ){
-//     leftIndex = randomNumber ( 0, Bussmall.all.length - 1 );
-//   }
-//   leftImage.src = Bussmall.all[leftIndex].image;
-//   leftImage.alt = Bussmall.all[leftIndex].name;
-//   leftImgIndex = leftIndex;
-//   let middleIndex;
-//   let rightIndex;
-//   rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   while ( rightIndex === leftIndex || rightIndex === left || rightIndex === middle || rightIndex === right );
-//   { rightIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   }
-//   rightImage.src = Bussmall.all[rightIndex].image;
-//   rightImage.alt = Bussmall.all[rightIndex].name;
-//   rightImgIndex = rightIndex;
-//   middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   while ( middleIndex === leftIndex || middleIndex === rightIndex || middleIndex === left || middleIndex === middle || middleIndex === right );{
-//     middleIndex = randomNumber( 0, Bussmall.all.length - 1 );
-//   }
-//   middleImage.src = Bussmall.all[middleIndex].image;
-//   middleImage.alt = Bussmall.all[middleIndex].name;
-//   middleImgIndex = middleIndex;
-//   Bussmall.all[leftIndex].shown++;
-//   Bussmall.all[middleIndex].shown++;
-//   Bussmall.all[rightIndex].shown++;
-//   left = leftIndex;
-//   middle = middleIndex;
-//   right = rightIndex;
-// }
+
+
+//Pictures rendering function
 let arr = [30,30,30 ];
 function render() {
   let leftIndex = randomNumber ( 0, Bussmall.all.length - 1 );
@@ -85,6 +63,8 @@ function render() {
   arr[1] = rightIndex;
   arr[1] = middleIndex;
 }
+
+//handle click function and counting the number of clicks
 function handelClick( event ) {
   if( Bussmall.counter < clickCounter ) {
     const clickedElement = event.target;
@@ -107,11 +87,19 @@ function handelClick( event ) {
   //   renderChart();
   // }
 }
+
 imageSection.addEventListener( 'click', handelClick );
+
+
+
+//Random number generating function
 function randomNumber( min, max ) {
   return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
 }
+
 render();
+
+//Show results button
 const Button = document.getElementById( 'button' );
 Button.addEventListener ( 'click', function (){
   const result = document.getElementById( 'results' );
@@ -125,8 +113,11 @@ Button.addEventListener ( 'click', function (){
   }
 }
 );
+
+// Drawing the chart
 const chartButton = document.getElementById( 'chartbutton' );
 chartButton.addEventListener ( 'click',renderChart ) ;
+
 function renderChart (){
   let nameArray = [];
   let clicksArray = [];
