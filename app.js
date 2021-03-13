@@ -62,7 +62,7 @@ function render() {
   middleImgIndex = middleIndex;
   arr[0] = leftIndex;
   arr[1] = rightIndex;
-  arr[1] = middleIndex;
+  arr[2] = middleIndex;
 }
 
 
@@ -250,7 +250,7 @@ function renderChart (){
   } );
 }
 
-//Local storage function
+// Local storage function
 
 function getData() {
   const data = localStorage.getItem( 'Bussmall' );
@@ -263,3 +263,4 @@ function getData() {
 
 chartButton.addEventListener( 'submit', Bussmall );
 getData();
+
